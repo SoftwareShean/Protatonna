@@ -6,7 +6,7 @@ export default function Player() {
   const [currentVideoTime, setCurrentVideoTime] = useState(0)
   const [currentAnnotation, setCurrentAnnotation] = useState();
   const [videoTimeStamps, setVideoTimeStamps] = useState([])
-  const [hideAnnotation, setHideAnnotation] = useState()
+  const [hideAnnotation, setHideAnnotation] = useState(false)
 
   const tracks = [
     [
@@ -161,6 +161,19 @@ export default function Player() {
     ]
   ]
 
+  const style = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    top: '-150px',
+    color: 'white',
+    margin: '0 auto',
+    width: '900px',
+    backgroundColor: 'black',
+    opacity: '.75'
+  }
 
   useEffect(() => {
     const video = document.querySelector('video')
@@ -184,14 +197,14 @@ export default function Player() {
               setCurrentAnnotation(annotation.show)
             }
             if (annotation.endTime === currentVideoTime) {
-              setHideAnnotation(annotation.hide)
+              setCurrentAnnotation(annotation.hide)
             }
           })
         }
       })
     });
 
-    
+
 
   }, [currentVideoTime])
 
@@ -200,8 +213,10 @@ export default function Player() {
       <video controls width="900" src={video} />
       {
         currentVideoTime && currentAnnotation ?
-          <>
-            <h1>{currentVideoTime}</h1><h1>{currentAnnotation}</h1></>
+          <div className='annotations' style={style}>
+            {/* <h4>{currentVideoTime}</h4> */}
+            <h4>{currentAnnotation}</h4>
+            </div>
           :
           <></>
       }
