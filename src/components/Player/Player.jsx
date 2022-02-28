@@ -184,6 +184,8 @@ export default function Player() {
     video.addEventListener('timeupdate', function () {
       setCurrentVideoTime(parseInt(parseFloat(video.currentTime).toFixed(0)))
       // optimized log n
+      // performs at < 1ms
+      // console.time('timer')
       let allTracks = tracks.flat();
       allTracks.filter(track => {
         if (track.startTime === currentVideoTime) {
@@ -194,20 +196,24 @@ export default function Player() {
           setHideAnnotation(track.hide)
         }
       })
+      // console.timeEnd('timer')
 
-    //log n2
-      // tracks.forEach(track => {
-      //   if (track.length > 0) {
-      //     track.forEach(annotation => {
-      //       if (annotation.startTime === currentVideoTime) {
-      //         setCurrentAnnotation(annotation.show)
-      //       }
-      //       if (annotation.endTime === currentVideoTime) {
-      //         setCurrentAnnotation(annotation.hide)
-      //       }
-      //     })
-      //   }
-      // })
+    //   console.time('timer')
+    // //log n2
+    // //performs > 1.25ms
+    //   tracks.forEach(track => {
+    //     if (track.length > 0) {
+    //       track.forEach(annotation => {
+    //         if (annotation.startTime === currentVideoTime) {
+    //           setCurrentAnnotation(annotation.show)
+    //         }
+    //         if (annotation.endTime === currentVideoTime) {
+    //           setCurrentAnnotation(annotation.hide)
+    //         }
+    //       })
+    //     }
+    //   })
+    //   console.timeEnd('timer')
     });
 
 
