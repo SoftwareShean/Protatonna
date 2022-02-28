@@ -6,16 +6,16 @@ To view a deployment of a small application based on the solution, [Click Here](
 const video = document.querySelector('video')
     video.addEventListener('timeupdate', function () {
       setCurrentVideoTime(parseInt(parseFloat(video.currentTime).toFixed(0)))
-      // let allTracks = tracks.flat();
-      // allTracks.filter(track => {
-      //   if (track.startTime === currentVideoTime) {
-      //     console.log(track, currentVideoTime)
-      //     setCurrentAnnotation(track.show)
-      //   }
-      //   if (track.endTime === currentVideoTime) {
-      //     setHideAnnotation(track.hide)
-      //   }
-      // })
+       let allTracks = tracks.flat();
+       allTracks.filter(track => {
+         if (track.startTime === currentVideoTime) {
+           console.log(track, currentVideoTime)
+           setCurrentAnnotation(track.show)
+         }
+         if (track.endTime === currentVideoTime) {
+           setHideAnnotation(track.hide)
+         }
+       })
 
       tracks.forEach(track => {
         if (track.length > 0) {
