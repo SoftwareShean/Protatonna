@@ -18,34 +18,34 @@ export default function Player() {
       },
       {
         "startTime": 3,
-        "endTime": 4,
+        "endTime": 5,
         "show": 'thank you so much for joining us for our',
         "hide": true
       },
       {
         "startTime": 5,
         "endTime": 6,
-        "show": 'third video lesson lab this week',
+        "show": 'third lesson lab this week',
         "hide": true
       },
     ],
     [
       {
         "startTime": 6,
-        "endTime": 7,
+        "endTime": 9,
         "show": 'celebrating upper elementary grades for elementary week',
         "hide": true
       },
       {
         "startTime": 9,
         "endTime": 12,
-        "show": 'uh once again hi and my name is Tyson at newsela',
+        "show": 'uh once again hi my name is Tyson at newsela',
         "hide": true
       },
       {
         "startTime": 12,
         "endTime": 14,
-        "show": 'i am joined by my friend Lindsay',
+        "show": 'and i am joined by my friend Lindsay',
         "hide": true
       },
       {
@@ -73,13 +73,19 @@ export default function Player() {
         "hide": true
       },
       {
-        "startTime": 19,
+        "startTime": 18,
         "endTime": 20,
-        "show": 'haha what was that?',
+        "show": `[inaudible]`,
         "hide": true
       },
       {
         "startTime": 20,
+        "endTime": 21,
+        "show": 'haha what was that?',
+        "hide": true
+      },
+      {
+        "startTime": 21,
         "endTime": 22,
         "show": `I don't have the view you have`,
         "hide": true
@@ -110,7 +116,7 @@ export default function Player() {
       },
       {
         "startTime": 30,
-        "endTime": 32,
+        "endTime": 33,
         "show": 'like earth science in the upper elementary grades',
         "hide": true
       },
@@ -130,14 +136,8 @@ export default function Player() {
     [
       {
         "startTime": 35,
-        "endTime": 36,
-        "show": 'so, you know,',
-        "hide": true
-      },
-      {
-        "startTime": 36,
         "endTime": 38,
-        "show": `these lesson labs that we've been doing `,
+        "show": `so, you know, these lesson labs that we've been doing `,
         "hide": true
       },
       {
@@ -154,7 +154,7 @@ export default function Player() {
       },
       {
         "startTime": 41,
-        "endTime": 44,
+        "endTime": 45,
         "show": 'a particular subject or unit the teachers are teaching',
         "hide": true
       },
@@ -175,33 +175,39 @@ export default function Player() {
     opacity: '.75'
   }
 
+  const player = {
+    marginTop: '10rem'
+  }
+
   useEffect(() => {
     const video = document.querySelector('video')
     video.addEventListener('timeupdate', function () {
       setCurrentVideoTime(parseInt(parseFloat(video.currentTime).toFixed(0)))
-      // let allTracks = tracks.flat();
-      // allTracks.filter(track => {
-      //   if (track.startTime === currentVideoTime) {
-      //     console.log(track, currentVideoTime)
-      //     setCurrentAnnotation(track.show)
-      //   }
-      //   if (track.endTime === currentVideoTime) {
-      //     setHideAnnotation(track.hide)
-      //   }
-      // })
-
-      tracks.forEach(track => {
-        if (track.length > 0) {
-          track.forEach(annotation => {
-            if (annotation.startTime === currentVideoTime) {
-              setCurrentAnnotation(annotation.show)
-            }
-            if (annotation.endTime === currentVideoTime) {
-              setCurrentAnnotation(annotation.hide)
-            }
-          })
+      // optimized log n
+      let allTracks = tracks.flat();
+      allTracks.filter(track => {
+        if (track.startTime === currentVideoTime) {
+          console.log(track, currentVideoTime)
+          setCurrentAnnotation(track.show)
+        }
+        if (track.endTime === currentVideoTime) {
+          setHideAnnotation(track.hide)
         }
       })
+
+    //log n2
+      // tracks.forEach(track => {
+      //   if (track.length > 0) {
+      //     track.forEach(annotation => {
+      //       if (annotation.startTime === currentVideoTime) {
+      //         setCurrentAnnotation(annotation.show)
+      //       }
+      //       if (annotation.endTime === currentVideoTime) {
+      //         setCurrentAnnotation(annotation.hide)
+      //       }
+      //     })
+      //   }
+      // })
     });
 
 
@@ -209,10 +215,10 @@ export default function Player() {
   }, [currentVideoTime])
 
   return (
-    <>
+    <div className='player' style={player}>
       <video controls width="900" src={video} />
       {
-        currentVideoTime && currentAnnotation ?
+        currentVideoTime ?
           <div className='annotations' style={style}>
             {/* <h4>{currentVideoTime}</h4> */}
             <h4>{currentAnnotation}</h4>
@@ -221,6 +227,6 @@ export default function Player() {
           <></>
       }
 
-    </>
+    </div>
   )
 }
