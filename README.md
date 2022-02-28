@@ -1,10 +1,10 @@
-To view the solution to this coding challenge [Click Here](https://github.com/SoftwareShean/Protatonna/blob/main/src/components/Player/Player.jsx).
+The below code sample offers two solutions to the challenge. One being optimized and the other less so. I went ahead and spent a few hours to build a proof of concept application on top of the challenge that displays video annotations over a video player to further display my capabilities.  
 
-To view a deployment of a small application based on the solution, [Click Here](https://newsela-challenge.netlify.app/)
+To view a deployment implementing the coding challenge, [click here.](https://newsela-challenge.netlify.app/)
 
 ```
-const video = document.querySelector('video')
     video.addEventListener('timeupdate', function () {
+        // log n
       setCurrentVideoTime(parseInt(parseFloat(video.currentTime).toFixed(0)))
        let allTracks = tracks.flat();
        allTracks.filter(track => {
@@ -16,7 +16,8 @@ const video = document.querySelector('video')
            setHideAnnotation(track.hide)
          }
        })
-
+    
+        //log n2
       tracks.forEach(track => {
         if (track.length > 0) {
           track.forEach(annotation => {
