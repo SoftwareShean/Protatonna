@@ -216,7 +216,7 @@ export default function Player() {
 
   return (
     <div className='player' style={player}>
-      <video controls width="900" src={video} />
+      <video controls width="900" src={video} aria-label="newsela video player"/>
       {
         currentVideoTime ?
           <div className='annotations' style={style}>
