@@ -9,7 +9,6 @@ To view a deployment implementing the coding challenge, [click here.](https://ne
        let allTracks = tracks.flat();
        allTracks.filter(track => {
          if (track.startTime === currentVideoTime) {
-           console.log(track, currentVideoTime)
            setCurrentAnnotation(track.show)
          }
          if (track.endTime === currentVideoTime) {
