@@ -225,7 +225,6 @@ export default function Player() {
       {
         currentVideoTime ?
           <div className='annotations' style={style}>
-            {/* <h4>{currentVideoTime}</h4> */}
             <h4>{currentAnnotation}</h4>
             </div>
           :

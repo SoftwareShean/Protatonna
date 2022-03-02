@@ -6,9 +6,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* lessons gallery component */}
       <Player />
-      {/* notes component */}
     </div>
   );
 }
